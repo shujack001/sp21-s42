@@ -58,7 +58,8 @@ public class Tile {
 
     /** Return the distance in rows or columns between me and my successor
      *  tile (0 if I have no successor). */
-    public int distToNext() {
+    public int
+    distToNext() {
         if (next == null) {
             return 0;
         } else {
