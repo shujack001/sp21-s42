@@ -109,21 +109,41 @@ public class Model extends Observable {
     public boolean tilt(Side side) {
         boolean changed;
         changed = false;
-
+        board.setViewingPerspective(side);
         // TODO: Modify this.board (and perhaps this.score) to account
         // for the tilt to the Side SIDE. If the board changed, set the
         // changed local variable to true.
-        for(int i = 0; i < this.board.size(); i++){
-            for(int j = 0; j < this.board.size(); j++){
-                if(board.tile(i, j) != null){
-                    Tile t = board.tile(i, j);
-                    board.move(i, 3, t);
-                    score += 1;
-                    changed = true;
+        for(int column = board.size() - 1; column >= 0; column--){
+            int cannotMerge = board.size();
+            for(int row = board.size() - 1; row >= 0; row--){
+                Tile t = board.tile(column, row);
+                if(board.tile(column, row) != null){
+                    for(int toprow = row + 1; toprow < board.size(); toprow++){
+                        if(board.tile(column, toprow) == null){
+                            if(toprow == board.size() - 1){
+                                board.move(column, toprow, t);
+                                changed = true;
+                                break;
+                            }
+                            continue;
+                        }else if(board.tile(column, toprow).value() != board.tile(column, row).value() || (board.tile(column, toprow).value() == board.tile(column, row).value() && toprow == cannotMerge)){
+                            board.move(column, toprow - 1, t);
+                            if(toprow - 1 != row){
+                                changed = true;
+                            }
+                            break;
+                        }else if(board.tile(column, toprow).value() == board.tile(column, row).value() && toprow != cannotMerge){
+                            board.move(column, toprow, t);
+                            cannotMerge = toprow;
+                            changed = true;
+                            score += board.tile(column, toprow).value();
+                            break;
+                        }
+                    }
                 }
             }
         }
-
+        board.setViewingPerspective(Side.NORTH);
         checkGameOver();
         if (changed) {
             setChanged();
