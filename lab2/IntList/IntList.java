@@ -44,6 +44,12 @@ public class IntList {
         } else {
             return first + " -> " + rest.toString();
         }
+//        if(rest == null){
+//            // because toString return a String int + " -> " int will be changed to String //
+//            return String.valueOf(first);
+//        }else{
+//            return first + " -> " + rest.toString();
+//        }
     }
 
     /**
@@ -64,4 +70,14 @@ public class IntList {
         System.arraycopy(argList, 1, restList, 0, argList.length - 1);
         return new IntList(argList[0], IntList.of(restList));
     }
+
+//    public static IntList of(int ...argList){
+//        if(argList.length == 0){
+//            return null;
+//        }else{
+//            int[] restList = new int[argList.length - 1];
+//            System.arraycopy(argList, 1, restList, 0, argList.length - 1);
+//            return new IntList(argList[0], IntList.of(restList));
+//        }
+//    }
 }

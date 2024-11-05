@@ -44,7 +44,7 @@ public class DebugExercise2 {
         int sum = 0;
         while (i < x.length) {
             sum = sum + add(x[i]);
-            i = i + 1
+            i = i + 1;
         }
         return sum;
     }
