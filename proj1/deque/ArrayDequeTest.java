@@ -66,5 +66,22 @@ public class ArrayDequeTest {
         test4.removeLast();
     }
 
+    @Test
+    public void getTest(){
+        ArrayDeque<Integer> test5 = new ArrayDeque<>();
+        test5.addFirst(1);
+        test5.addFirst(2);
+        test5.addFirst(3);
+        test5.addFirst(4);
+        test5.addFirst(5);
+        test5.addFirst(6);
+        test5.addFirst(7);
+        test5.addLast(8);
+        test5.addLast(9);
+        for(int i = 0; i < test5.size(); i++){
+            System.out.print(test5.get(i) + " ");
+        }
+    }
+
 
 }

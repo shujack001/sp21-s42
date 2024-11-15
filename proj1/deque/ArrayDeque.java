@@ -100,4 +100,40 @@ public class ArrayDeque<T> {
         }
         return array[(nextfirst + 1 + index) % array.length];
     }
+
+    public boolean equals(Object o){
+        if(o == this){
+            return true;
+        }
+        if(o == null){
+            return false;
+        }
+        if(!(o instanceof Deque)){
+            return false;
+        }
+        Deque<T> OtherDeque = (Deque<T>) o;
+        if(OtherDeque.size() != size){
+            return false;
+        }
+        for(int i = 0; i < size; i++){
+            if(!(OtherDeque.get(i).equals(this.get(i)))){
+                return false;
+            }
+        }
+        return true;
+//        if(o instanceof ArrayDeque){
+//            ArrayDeque<T> OtherDeque = (ArrayDeque<T>) o;
+//            if(OtherDeque.size() != size){
+//                return false;
+//            }
+//            for(int i = 0; i < size; i++){
+//                if(!OtherDeque.array[(nextfirst + 1 + i) % array.length].equals(array[(nextfirst + 1 + i) % array.length])){
+//                    return false;
+//                }
+//            }
+//            return true;
+//        }else{
+//            return false;
+//        }
+    }
 }
