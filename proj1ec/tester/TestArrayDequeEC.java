@@ -7,6 +7,13 @@ import edu.princeton.cs.introcs.StdRandom;
 // (void)add (T)remove (int)size (boolean)isEmpty (T)get
 public class TestArrayDequeEC {
 
+    @Test
+    public void isEmptyTest(){
+        StudentArrayDeque<Integer> studentDeque = new StudentArrayDeque<>();
+        assertTrue(studentDeque.isEmpty());
+        studentDeque.addLast(1);
+        assertFalse(studentDeque.isEmpty());
+    }
 
     @Test
     public void addremovegetsizeTest() {
@@ -20,14 +27,18 @@ public class TestArrayDequeEC {
                 studentDeque.addFirst(randVal);
                 correctDeque.addFirst(randVal);
                 operations.append("addFirst(").append(randVal).append(")\n");
+                operations.append("size()\n");
                 assertEquals(operations + " studentDeque size should " + correctDeque.size() + " doesn't " + studentDeque.size(), correctDeque.size(), studentDeque.size());
+                operations.append("get(O)\n");
                 assertEquals(operations + " studentDeque first should " + correctDeque.get(0) + " doesn't " + studentDeque.get(0), correctDeque.get(0), studentDeque.get(0));
             } else if (operation == 1) {
                 int randVal = StdRandom.uniform(100);
                 studentDeque.addLast(randVal);
                 correctDeque.addLast(randVal);
                 operations.append("addLast(").append(randVal).append(")\n");
+                operations.append("size()\n");
                 assertEquals(operations + "studentDeque size should " + correctDeque.size() + " doesn't " + studentDeque.size(), correctDeque.size(), studentDeque.size());
+                operations.append("get(size - 1)\n");
                 assertEquals(operations + "studentDeque last should " + correctDeque.get(correctDeque.size() - 1) + " doesn't " + studentDeque.get(studentDeque.size() - 1), correctDeque.get(correctDeque.size() - 1), studentDeque.get(studentDeque.size() - 1));
             } else if (operation == 2) {
                 if (!studentDeque.isEmpty() && !correctDeque.isEmpty()) {
@@ -35,6 +46,7 @@ public class TestArrayDequeEC {
                     Integer correctFirst = correctDeque.removeFirst();
                     operations.append("removeFirst()\n");
                     assertEquals(operations.toString(), correctFirst, studentFirst);
+                    operations.append("size()\n");
                     assertEquals(operations + "studentDeque size should " + correctDeque.size() + " doesn't " + studentDeque.size(), correctDeque.size(), studentDeque.size());
 //                    assertEquals("studentDeque first should" + correctDeque.get(correctDeque.size() - 1) + "doesn't" + studentDeque.get(studentDeque.size() - 1), correctDeque.get(correctDeque.size() - 1), studentDeque.get(studentDeque.size() - 1));
                 }
@@ -44,6 +56,7 @@ public class TestArrayDequeEC {
                     Integer correctLast = correctDeque.removeLast();
                     operations.append("removeLast()\n");
                     assertEquals(operations.toString(), correctLast, studentLast);
+                    operations.append("size()\n");
                     assertEquals(operations + "studentDeque size should " + correctDeque.size() + " doesn't " + studentDeque.size(), correctDeque.size(), studentDeque.size());
 //                  assertEquals("studentDeque last should" + correctDeque.get(correctDeque.size() - 1) + "doesn't" + studentDeque.get(studentDeque.size() - 1), correctDeque.get(correctDeque.size() - 1), studentDeque.get(studentDeque.size() - 1));
                 }
