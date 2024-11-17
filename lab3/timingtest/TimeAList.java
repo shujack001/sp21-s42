@@ -27,7 +27,7 @@ public class TimeAList {
         AList<Integer> Ns = new AList<>();
         AList<Double> times = new AList<>();
         Stopwatch sw = new Stopwatch();
-        for(int i = 0; i < 10000000; i++){
+        for(int i = 0; i < 128000; i++){
             items.addLast(i);
             if(i == 999){
                 Ns.addLast(1000);
@@ -57,8 +57,8 @@ public class TimeAList {
                 Ns.addLast(64000);
                 double time = sw.elapsedTime();
                 times.addLast(time);
-            }else if(i == 9999999){
-                Ns.addLast(10000000);
+            }else if(i == 127999){
+                Ns.addLast(128000);
                 double time = sw.elapsedTime();
                 times.addLast(time);
             }
