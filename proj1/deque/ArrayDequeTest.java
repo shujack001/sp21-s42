@@ -83,5 +83,15 @@ public class ArrayDequeTest {
         }
     }
 
+    @Test
+    public void IterTest(){
+        ArrayDeque<Integer> test6 = new ArrayDeque<>();
+        test6.addLast(1);
+        test6.addLast(2);
+        test6.addLast(3);
+        for(Integer i : test6){
+            System.out.println(i);
+        }
+    }
 
 }

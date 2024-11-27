@@ -187,4 +187,25 @@ public class LinkedListDequeTest {
         assertEquals(Integer.valueOf(1), test6.get(0));
         assertEquals(Integer.valueOf(5), test6.get(4));
     }
+
+    @Test
+    public void IterTest(){
+        LinkedListDeque<Integer> test7 = new LinkedListDeque<>();
+        test7.addLast(1);
+        test7.addLast(2);
+        test7.addLast(3);
+        for(Integer i : test7){
+            System.out.println(i);
+        }
+    }
+
+    @Test
+    public void getrecurTest(){
+        LinkedListDeque<Integer> test8 = new LinkedListDeque<>();
+        test8.addLast(1);
+        test8.addLast(2);
+        test8.addLast(3);
+        test8.addFirst(1);
+        assertEquals("wrong", Integer.valueOf(2), test8.getRecursive(2));
+    }
 }

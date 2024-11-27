@@ -1,10 +1,12 @@
 package deque;
 
+import java.util.Iterator;
+
 //   抓住不变量 编写代码
 // the list length is size
 // nextfirst + 1 is the front index of the list
 // nextlast - 1 is the back index of the list
-public class ArrayDeque<T> {
+public class ArrayDeque<T> implements Deque<T>, Iterable<T>{
     T[] array;
     int nextfirst;
     int nextlast;
@@ -136,4 +138,29 @@ public class ArrayDeque<T> {
 //            return false;
 //        }
     }
+
+    public Iterator<T> iterator(){
+        return new ArrayDequeIterator();
+    }
+
+    private class ArrayDequeIterator implements Iterator<T>{
+        private int wizpos;
+
+        public ArrayDequeIterator(){
+            wizpos = 0;
+        }
+
+        public boolean hasNext(){
+            return size > wizpos;
+        }
+
+        public T next(){
+            int postion = nextfirst + 1 + wizpos;
+            T temp = array[postion];
+            wizpos += 1;
+            return temp;
+        }
+
+    }
+
 }

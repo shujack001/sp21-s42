@@ -1,5 +1,7 @@
 package deque;
 
+import java.util.Iterator;
+
 public interface Deque<T> {
     public void addFirst(T item);
     public void addLast(T item);
@@ -12,8 +14,8 @@ public interface Deque<T> {
     public T removeLast();
     // get the item if index, 0 is the front, if no exists, return null
     public T get(int index);
-    // ??
-//    public Iterator<T> iterator();
+    //  can iterable
+    public Iterator<T> iterator();
     // if o == deque return true use instanceof keywords
     public boolean equals(Object o);
 }
