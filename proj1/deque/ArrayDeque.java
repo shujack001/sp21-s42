@@ -29,7 +29,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T>{
         nextfirst = capacity / 4 - 1;
         nextlast = nextfirst + size + 1;
     }
-
+    @Override
     public void addFirst(T item){
         if(size == array.length){
             resizeArray(size * 2);
@@ -41,7 +41,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T>{
         nextfirst -= 1;
         size += 1;
     }
-
+    @Override
     public void addLast(T item){
         if(size == array.length){
             resizeArray(size * 2);
@@ -53,7 +53,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T>{
         nextlast += 1;
         size += 1;
     }
-
+//    @Override
     public boolean isEmpty(){
         if(size == 0){
             return true;
@@ -71,7 +71,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T>{
             System.out.print(array[(nextfirst + 1 + i) % array.length] + " ");
         }
     }
-
+    @Override
     public T removeFirst(){
         if(size == 0){
             return null;
@@ -83,7 +83,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T>{
         size -= 1;
         return array[nextfirst];
     }
-
+    @Override
     public T removeLast(){
         if(size == 0){
             return null;
@@ -102,7 +102,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T>{
         }
         return array[(nextfirst + 1 + index) % array.length];
     }
-
+    @Override
     public boolean equals(Object o){
         if(o == this){
             return true;
@@ -138,7 +138,7 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T>{
 //            return false;
 //        }
     }
-
+    @Override
     public Iterator<T> iterator(){
         return new ArrayDequeIterator();
     }
@@ -149,16 +149,15 @@ public class ArrayDeque<T> implements Deque<T>, Iterable<T>{
         public ArrayDequeIterator(){
             wizpos = 0;
         }
-
+        @Override
         public boolean hasNext(){
             return size > wizpos;
         }
-
+        @Override
         public T next(){
-            int postion = nextfirst + 1 + wizpos;
-            T temp = array[postion];
+            T item = get(wizpos);
             wizpos += 1;
-            return temp;
+            return item;
         }
 
     }

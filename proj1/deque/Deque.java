@@ -5,7 +5,7 @@ import java.util.Iterator;
 public interface Deque<T> {
     public void addFirst(T item);
     public void addLast(T item);
-    public boolean isEmpty();
+//    public boolean isEmpty();
     public int size();
     // print first to last
     public void printDeque();
@@ -18,4 +18,11 @@ public interface Deque<T> {
     public Iterator<T> iterator();
     // if o == deque return true use instanceof keywords
     public boolean equals(Object o);
+
+    default boolean isEmpty(){
+        if(size() == 0){
+            return true;
+        }
+        return false;
+    }
 }

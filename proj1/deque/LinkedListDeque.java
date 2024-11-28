@@ -1,5 +1,8 @@
 package deque;
 
+import afu.org.checkerframework.checker.oigj.qual.O;
+import org.junit.Test;
+
 import java.util.Iterator;
 
 public class LinkedListDeque<T> implements Deque<T>, Iterable<T>{
@@ -27,20 +30,21 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T>{
     }
 
     // add and remove must  take constant time, this mean cannot use loops
+    @Override
     public void addFirst(T item){
         Node new_First = new Node(item, sentinel, sentinel.next);
         sentinel.next.prev = new_First;
         sentinel.next = new_First;
         size += 1;
     }
-
+    @Override
     public void addLast(T item){
         Node new_Last = new Node(item, sentinel.prev, sentinel);
         sentinel.prev.next = new_Last;
         sentinel.prev = new_Last;
         size += 1;
     }
-
+//    @Override
     public boolean isEmpty(){
         if (size == 0){
             return true;
@@ -48,11 +52,11 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T>{
             return false;
         }
     }
-
+    @Override
     public int size(){
         return size;
     }
-
+    @Override
     public void printDeque(){
         Node temp = sentinel;
         while(true){
@@ -65,7 +69,7 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T>{
         }
         System.out.println("");
     }
-
+    @Override
     public T removeFirst(){
         if(size == 0){
             return null;
@@ -77,7 +81,7 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T>{
             return f_item;
         }
     }
-
+    @Override
     public T removeLast(){
         if(size == 0){
             return null;
@@ -91,6 +95,7 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T>{
     }
 
     // get must be iteration, not recursion
+    @Override
     public T get(int index){
         Node temp = sentinel;
         for(int i = 0; i <= index; i++){
@@ -119,7 +124,7 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T>{
         }
         return getRecursiveHelper(index, p);
     }
-
+    @Override
     public boolean equals(Object o){
         if(this == o){
             return true;
@@ -149,7 +154,7 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T>{
         }
 
     }
-
+    @Override
     public Iterator<T> iterator(){
         return new LinkedDequeIterator();
     }
@@ -160,11 +165,11 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T>{
         public LinkedDequeIterator(){
             wizpos = 0;
         }
-
+        @Override
         public boolean hasNext(){
             return wizpos < size;
         }
-
+        @Override
         public T next(){
             T returnitem;
             Node temp = sentinel.next;
