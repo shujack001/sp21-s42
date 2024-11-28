@@ -9,15 +9,15 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T>{
         Node prev;
         Node next;
 
-        public Node(T i, Node p, Node n){
+        private Node(T i, Node p, Node n){
             item = i;
             prev = p;
             next = n;
         }
     }
 
-    Node sentinel;
-    int size;
+    private Node sentinel;
+    private int size;
 
     public LinkedListDeque(){
         sentinel = new Node(null, null, null);
@@ -42,13 +42,13 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T>{
         size += 1;
     }
 //    @Override
-    public boolean isEmpty(){
-        if (size == 0){
-            return true;
-        }else{
-            return false;
-        }
-    }
+//    public boolean isEmpty(){
+//        if (size == 0){
+//            return true;
+//        }else{
+//            return false;
+//        }
+//    }
     @Override
     public int size(){
         return size;
@@ -123,33 +123,25 @@ public class LinkedListDeque<T> implements Deque<T>, Iterable<T>{
     }
     @Override
     public boolean equals(Object o){
+        if(o == null){
+            return false;
+        }
         if(this == o){
             return true;
         }
         if(!(o instanceof Deque)){
             return false;
         }
-        if(o instanceof LinkedListDeque){
-            LinkedListDeque<T> otherDeque = (LinkedListDeque<T>) o;
-
-            if(otherDeque.size() != this.size()){
-                return false;
-            }
-
-            Node temp1 = sentinel;
-            Node temp2 = otherDeque.sentinel;
-            while(temp1.next != sentinel){
-                if(!temp1.item.equals(temp2.item)){
-                    return false;
-                }
-                temp1 = temp1.next;
-                temp2 = temp2.next;
-            }
-            return true;
-        }else{
+        Deque<?> otherDeque = (Deque<?>) o;
+        if(otherDeque.size() != this.size()){
             return false;
         }
-
+        for(int i = 0; i < size; i++){
+            if(!(otherDeque.get(i).equals(this.get(i)))){
+                return false;
+            }
+        }
+        return true;
     }
     @Override
     public Iterator<T> iterator(){
